@@ -124,7 +124,7 @@ def cruz_vermelha():
     t.end_fill()
 
 
-# Desenhar a bandeira do Reino Unido
+# 1. Desenhar a bandeira do Reino Unido
 def desenhar_bandeira_do_reino_unido():
     fundo_azul()
     diagonais_brancas()
@@ -138,7 +138,7 @@ sleep(2)
 t.clear()
 
 
-# Desenhar a bandeira da Inglaterra
+# 2. Desenhar a bandeira da Inglaterra
 
 def desenhar_bandeira_inglaterra():
     cruz_vermelha()
@@ -155,814 +155,266 @@ def desenhar_bandeira_inglaterra():
         t.fd(300)
         t.left(90)
 
-
-desenhar_bandeira_inglaterra()
-
 sleep(2)
 t.clear()
 
-# Bandeira da Georgia
+
+# Desenhar a bandeira da Georgia
 
 desenhar_bandeira_inglaterra()
 
+def desenhar_cruz(x, y):
+    # parte vertical
+    t.penup()
+    t.goto(x, y)
+    t.pendown()
+    t.color("#C2112C")
+    t.begin_fill()
 
+    for i in range(2):
+        t.fd(20)
+        t.left(90)
+        t.fd(60)
+        t.left(90)
 
-# cruz encima izquerda
-t.penup()
-t.goto(-150, 75)
-t.pendown()
-t.color("#C2112C")
-t.begin_fill()
+    t.end_fill()
 
-for i in range(2):
-    t.fd(20)
-    t.left(90)
-    t.fd(60)
-    t.left(90)
+    # parte horizontal
+    t.penup()
+    t.goto(x - 20, y + 20)
+    t.pendown()
+    t.begin_fill()
 
-t.end_fill()
+    for i in range(2):
+        t.fd(60)
+        t.left(90)
+        t.fd(20)
+        t.left(90)
 
-t.penup()
-t.goto(-170, 95)
-t.pendown()
-t.color("#C2112C")
-t.begin_fill()
+    t.end_fill()
 
-for i in range(2):
+# 3. Desenhar a bandeira da Georgia
 
-    t.fd(60)
-    t.left(90)
-    t.fd(20)
-    t.left(90)
+desenhar_bandeira_inglaterra()
 
-t.end_fill()
+# cruz encima esquerda
+desenhar_cruz(-150, 75)
 
 # cruz encima direita
-t.penup()
-t.goto(130, 75)
-t.pendown()
-t.color("#C2112C")
-t.begin_fill()
+desenhar_cruz(130, 75)
 
-for i in range(2):
-    t.fd(20)
-    t.left(90)
-    t.fd(60)
-    t.left(90)
-
-t.end_fill()
-
-t.penup()
-t.goto(110, 95)
-t.pendown()
-t.color("#C2112C")
-t.begin_fill()
-
-for i in range(2):
-    t.fd(60)
-    t.left(90)
-    t.fd(20)
-    t.left(90)
-
-t.end_fill()
-
-# cruz debaixo izquerda
-t.penup()
-t.goto(-150, -105)
-t.pendown()
-t.color("#C2112C")
-t.begin_fill()
-
-for i in range(2):
-    t.fd(20)
-    t.left(90)
-    t.fd(60)
-    t.left(90)
-
-t.end_fill()
-
-t.penup()
-t.goto(-170, -85)
-t.pendown()
-t.color("#C2112C")
-t.begin_fill()
-
-for i in range(2):
-    t.fd(60)
-    t.left(90)
-    t.fd(20)
-    t.left(90)
-
-t.end_fill()
+# cruz debaixo esquerda
+desenhar_cruz(-150, -105)
 
 # cruz debaixo direita
-t.penup()
-t.goto(130, -105)
-t.pendown()
-t.color("#C2112C")
-t.begin_fill()
-
-for i in range(2):
-    t.fd(20)
-    t.left(90)
-    t.fd(60)
-    t.left(90)
-
-t.end_fill()
-
-t.penup()
-t.goto(110, -85)
-t.pendown()
-t.color("#C2112C")
-t.begin_fill()
-
-for i in range(2):
-    t.fd(60)
-    t.left(90)
-    t.fd(20)
-    t.left(90)
-
-t.end_fill()
-sleep(2)
-t.clear()
-
-
-# Bandeira da Franca
-t.penup()
-t.goto(-300, -150)
-t.pendown()
-t.color("#0055A4")
-
-t.begin_fill()
-
-for i in range(2):
-
-    t.fd(200)
-    t.left(90)
-    t.fd(300)
-    t.left(90)
-
-t.end_fill()
-
-# Franja blanca
-
-t.penup()
-t.goto(-100, -150)
-t.pendown()
-t.color("white")
-t.begin_fill()
-
-for i in range(2):
-
-    t.fd(200)
-    t.left(90)
-    t.fd(300)
-    t.left(90)
-
-t.end_fill()
-
-# Franja roja
-
-t.penup()
-t.goto(100, -150)
-t.pendown()
-t.color("#EF4135")
-t.begin_fill()
-
-for i in range(2):
-
-    t.fd(200)
-    t.left(90)
-    t.fd(300)
-    t.left(90)
-
-t.end_fill()
-
-sleep(2)
-t.clear()
-
-# Bandeira da Escocia
-t.penup()
-t.goto(-300, -150)
-t.pendown()
-t.color("#00247D")
-t.begin_fill()
-for _ in range(2):
-    t.fd(600)
-    t.left(90)
-    t.fd(300)
-    t.left(90)
-t.end_fill()
-
-
-# 2. Diagonais Brancas 
-t.color("#FFFFFF")
-t.pensize(50)
-
-t.penup()
-t.goto(-300, -150)
-t.pendown()
-t.goto(300, 150)
-
-t.penup()
-t.goto(-300, 150)
-t.pendown()
-t.goto(300, -150)
+desenhar_cruz(130, -105)
 
 sleep(2)
 t.clear()
 
 
-# 1. Bandeira da Itália
+def bandeira_vertical(cor1, cor2, cor3):
 
-# Verde
-t.penup()
-t.goto(-300, -150)
-t.setheading(0)
-t.pendown()
-t.pensize(1)
-t.color("#009246")
-t.begin_fill()
+    # Primeira faixa
+    t.penup()
+    t.goto(-300, -150)
+    t.setheading(0)
+    t.pendown()
+    t.color(cor1)
+    t.begin_fill()
 
-for i in range(2):
-    t.fd(200)
-    t.left(90)
-    t.fd(300)
-    t.left(90)
+    for i in range(2):
+        t.fd(200)
+        t.left(90)
+        t.fd(300)
+        t.left(90)
 
-t.end_fill()
+    t.end_fill()
 
-# Branco
-t.penup()
-t.goto(-100, -150)
-t.setheading(0)
-t.pendown()
-t.color("white")
-t.begin_fill()
+    # Segunda faixa
+    t.penup()
+    t.goto(-100, -150)
+    t.pendown()
+    t.color(cor2)
+    t.begin_fill()
 
-for i in range(2):
-    t.fd(200)
-    t.left(90)
-    t.fd(300)
-    t.left(90)
+    for i in range(2):
+        t.fd(200)
+        t.left(90)
+        t.fd(300)
+        t.left(90)
 
-t.end_fill()
+    t.end_fill()
 
-# Vermelho
-t.penup()
-t.goto(100, -150)
-t.setheading(0)
-t.pendown()
-t.color("#CE2B37")
-t.begin_fill()
+    # Terceira faixa
+    t.penup()
+    t.goto(100, -150)
+    t.pendown()
+    t.color(cor3)
+    t.begin_fill()
 
-for i in range(2):
-    t.fd(200)
-    t.left(90)
-    t.fd(300)
-    t.left(90)
+    for i in range(2):
+        t.fd(200)
+        t.left(90)
+        t.fd(300)
+        t.left(90)
 
-t.end_fill()
+    t.end_fill()
 
+# 4. França
+bandeira_vertical("#0055A4", "white", "#EF4135")
 sleep(2)
 t.clear()
 
-
-# 2. Bandeira da Irlanda
-
-# Verde
-t.penup()
-t.goto(-300, -150)
-t.setheading(0)
-t.pendown()
-t.color("#169B62")
-t.begin_fill()
-
-for i in range(2):
-    t.fd(200)
-    t.left(90)
-    t.fd(300)
-    t.left(90)
-
-t.end_fill()
-
-# Branco
-t.penup()
-t.goto(-100, -150)
-t.setheading(0)
-t.pendown()
-t.color("white")
-t.begin_fill()
-
-for i in range(2):
-    t.fd(200)
-    t.left(90)
-    t.fd(300)
-    t.left(90)
-
-t.end_fill()
-
-# Laranja
-t.penup()
-t.goto(100, -150)
-t.setheading(0)
-t.pendown()
-t.color("#FF883E")
-t.begin_fill()
-
-for i in range(2):
-    t.fd(200)
-    t.left(90)
-    t.fd(300)
-    t.left(90)
-
-t.end_fill()
-
+# 5. Itália
+bandeira_vertical("#009246", "white", "#CE2B37")
 sleep(2)
 t.clear()
 
-
-# 3. Bandeira da Bélgica
-
-# Preto
-t.penup()
-t.goto(-300, -150)
-t.setheading(0)
-t.pendown()
-t.color("black")
-t.begin_fill()
-
-for i in range(2):
-    t.fd(200)
-    t.left(90)
-    t.fd(300)
-    t.left(90)
-
-t.end_fill()
-
-# Amarelo
-t.penup()
-t.goto(-100, -150)
-t.setheading(0)
-t.pendown()
-t.color("#FDDA24")
-t.begin_fill()
-
-for i in range(2):
-    t.fd(200)
-    t.left(90)
-    t.fd(300)
-    t.left(90)
-
-t.end_fill()
-
-# Vermelho
-t.penup()
-t.goto(100, -150)
-t.setheading(0)
-t.pendown()
-t.color("#EF3340")
-t.begin_fill()
-
-for i in range(2):
-    t.fd(200)
-    t.left(90)
-    t.fd(300)
-    t.left(90)
-
-t.end_fill()
-
+# 6. Irlanda
+bandeira_vertical("#169B62", "white", "#FF883E")
 sleep(2)
 t.clear()
 
-
-# 4. Bandeira da Alemanha
-
-# Preto
-t.penup()
-t.goto(-300, 50)
-t.setheading(0)
-t.pendown()
-t.color("black")
-t.begin_fill()
-
-for i in range(2):
-    t.fd(600)
-    t.left(90)
-    t.fd(100)
-    t.left(90)
-
-t.end_fill()
-
-# Vermelho
-t.penup()
-t.goto(-300, -50)
-t.setheading(0)
-t.pendown()
-t.color("#DD0000")
-t.begin_fill()
-
-for i in range(2):
-    t.fd(600)
-    t.left(90)
-    t.fd(100)
-    t.left(90)
-
-t.end_fill()
-
-# Amarelo
-t.penup()
-t.goto(-300, -150)
-t.setheading(0)
-t.pendown()
-t.color("#FFCE00")
-t.begin_fill()
-
-for i in range(2):
-    t.fd(600)
-    t.left(90)
-    t.fd(100)
-    t.left(90)
-
-t.end_fill()
-
+# 7. Bélgica
+bandeira_vertical("black", "#FDDA24", "#EF3340")
 sleep(2)
 t.clear()
 
+def bandeira_horizontal(cor1, cor2, cor3):
 
-# 5. Bandeira dos Países Baixos
+    # Faixa superior
+    t.penup()
+    t.goto(-300, 50)
+    t.setheading(0)
+    t.pendown()
+    t.color(cor1)
+    t.begin_fill()
 
-# Vermelho
-t.penup()
-t.goto(-300, 50)
-t.setheading(0)
-t.pendown()
-t.color("#AE1C28")
-t.begin_fill()
+    for i in range(2):
+        t.fd(600)
+        t.left(90)
+        t.fd(100)
+        t.left(90)
 
-for i in range(2):
-    t.fd(600)
-    t.left(90)
-    t.fd(100)
-    t.left(90)
+    t.end_fill()
 
-t.end_fill()
+    # Faixa central
+    t.penup()
+    t.goto(-300, -50)
+    t.pendown()
+    t.color(cor2)
+    t.begin_fill()
 
-# Branco
-t.penup()
-t.goto(-300, -50)
-t.setheading(0)
-t.pendown()
-t.color("white")
-t.begin_fill()
+    for i in range(2):
+        t.fd(600)
+        t.left(90)
+        t.fd(100)
+        t.left(90)
 
-for i in range(2):
-    t.fd(600)
-    t.left(90)
-    t.fd(100)
-    t.left(90)
+    t.end_fill()
 
-t.end_fill()
+    # Faixa inferior
+    t.penup()
+    t.goto(-300, -150)
+    t.pendown()
+    t.color(cor3)
+    t.begin_fill()
 
-# Azul
-t.penup()
-t.goto(-300, -150)
-t.setheading(0)
-t.pendown()
-t.color("#21468B")
-t.begin_fill()
+    for i in range(2):
+        t.fd(600)
+        t.left(90)
+        t.fd(100)
+        t.left(90)
 
-for i in range(2):
-    t.fd(600)
-    t.left(90)
-    t.fd(100)
-    t.left(90)
+    t.end_fill()
 
-t.end_fill()
-
+# 8. Alemanha
+bandeira_horizontal("black", "#DD0000", "#FFCE00")
 sleep(2)
 t.clear()
 
-
-# 6. Bandeira da Áustria
-
-# Vermelho superior
-t.penup()
-t.goto(-300, 50)
-t.setheading(0)
-t.pendown()
-t.color("#ED2939")
-t.begin_fill()
-
-for i in range(2):
-    t.fd(600)
-    t.left(90)
-    t.fd(100)
-    t.left(90)
-
-t.end_fill()
-
-# Branco
-t.penup()
-t.goto(-300, -50)
-t.setheading(0)
-t.pendown()
-t.color("white")
-t.begin_fill()
-
-for i in range(2):
-    t.fd(600)
-    t.left(90)
-    t.fd(100)
-    t.left(90)
-
-t.end_fill()
-
-# Vermelho inferior
-t.penup()
-t.goto(-300, -150)
-t.setheading(0)
-t.pendown()
-t.color("#ED2939")
-t.begin_fill()
-
-for i in range(2):
-    t.fd(600)
-    t.left(90)
-    t.fd(100)
-    t.left(90)
-
-t.end_fill()
-
+# 9. Países Baixos
+bandeira_horizontal("#AE1C28", "white", "#21468B")
 sleep(2)
 t.clear()
 
-
-# 7. Bandeira da Rússia
-
-# Branco
-t.penup()
-t.goto(-300, 50)
-t.setheading(0)
-t.pendown()
-t.color("white")
-t.begin_fill()
-
-for i in range(2):
-    t.fd(600)
-    t.left(90)
-    t.fd(100)
-    t.left(90)
-
-t.end_fill()
-
-# Azul
-t.penup()
-t.goto(-300, -50)
-t.setheading(0)
-t.pendown()
-t.color("#0039A6")
-t.begin_fill()
-
-for i in range(2):
-    t.fd(600)
-    t.left(90)
-    t.fd(100)
-    t.left(90)
-
-t.end_fill()
-
-# Vermelho
-t.penup()
-t.goto(-300, -150)
-t.setheading(0)
-t.pendown()
-t.color("#D52B1E")
-t.begin_fill()
-
-for i in range(2):
-    t.fd(600)
-    t.left(90)
-    t.fd(100)
-    t.left(90)
-
-t.end_fill()
-
+# 10. Áustria
+bandeira_horizontal("#ED2939", "white", "#ED2939")
 sleep(2)
 t.clear()
 
-
-# 8. Bandeira da Hungria
-
-# Vermelho
-t.penup()
-t.goto(-300, 50)
-t.setheading(0)
-t.pendown()
-t.color("#CE2939")
-t.begin_fill()
-
-for i in range(2):
-    t.fd(600)
-    t.left(90)
-    t.fd(100)
-    t.left(90)
-
-t.end_fill()
-
-# Branco
-t.penup()
-t.goto(-300, -50)
-t.setheading(0)
-t.pendown()
-t.color("white")
-t.begin_fill()
-
-for i in range(2):
-    t.fd(600)
-    t.left(90)
-    t.fd(100)
-    t.left(90)
-
-t.end_fill()
-
-# Verde
-t.penup()
-t.goto(-300, -150)
-t.setheading(0)
-t.pendown()
-t.color("#477050")
-t.begin_fill()
-
-for i in range(2):
-    t.fd(600)
-    t.left(90)
-    t.fd(100)
-    t.left(90)
-
-t.end_fill()
-
+# 11. Rússia
+bandeira_horizontal("white", "#0039A6", "#D52B1E")
 sleep(2)
 t.clear()
 
-
-# 9. Bandeira de Luxemburgo
-
-# Vermelho
-t.penup()
-t.goto(-300, 50)
-t.setheading(0)
-t.pendown()
-t.color("#EF3340")
-t.begin_fill()
-
-for i in range(2):
-    t.fd(600)
-    t.left(90)
-    t.fd(100)
-    t.left(90)
-
-t.end_fill()
-
-# Branco
-t.penup()
-t.goto(-300, -50)
-t.setheading(0)
-t.pendown()
-t.color("white")
-t.begin_fill()
-
-for i in range(2):
-    t.fd(600)
-    t.left(90)
-    t.fd(100)
-    t.left(90)
-
-t.end_fill()
-
-# Azul claro
-t.penup()
-t.goto(-300, -150)
-t.setheading(0)
-t.pendown()
-t.color("#00A3E0")
-t.begin_fill()
-
-for i in range(2):
-    t.fd(600)
-    t.left(90)
-    t.fd(100)
-    t.left(90)
-
-t.end_fill()
-
+# 12. Hungria
+bandeira_horizontal("#CE2939", "white", "#477050")
 sleep(2)
 t.clear()
 
-
-# 10. Bandeira da Estônia
-
-# Azul
-t.penup()
-t.goto(-300, 50)
-t.setheading(0)
-t.pendown()
-t.color("#0072CE")
-t.begin_fill()
-
-for i in range(2):
-    t.fd(600)
-    t.left(90)
-    t.fd(100)
-    t.left(90)
-
-t.end_fill()
-
-# Preto
-t.penup()
-t.goto(-300, -50)
-t.setheading(0)
-t.pendown()
-t.color("black")
-t.begin_fill()
-
-for i in range(2):
-    t.fd(600)
-    t.left(90)
-    t.fd(100)
-    t.left(90)
-
-t.end_fill()
-
-# Branco
-t.penup()
-t.goto(-300, -150)
-t.setheading(0)
-t.pendown()
-t.color("white")
-t.begin_fill()
-
-for i in range(2):
-    t.fd(600)
-    t.left(90)
-    t.fd(100)
-    t.left(90)
-
-t.end_fill()
-
+# 13. Luxemburgo
+bandeira_horizontal("#EF3340", "white", "#00A3E0")
 sleep(2)
 t.clear()
 
-
-# 11. Bandeira de Serra Leoa
-
-# Verde
-t.penup()
-t.goto(-300, 50)
-t.setheading(0)
-t.pendown()
-t.color("#1EB53A")
-t.begin_fill()
-
-for i in range(2):
-    t.fd(600)
-    t.left(90)
-    t.fd(100)
-    t.left(90)
-
-t.end_fill()
-
-# Branco
-t.penup()
-t.goto(-300, -50)
-t.setheading(0)
-t.pendown()
-t.color("white")
-t.begin_fill()
-
-for i in range(2):
-    t.fd(600)
-    t.left(90)
-    t.fd(100)
-    t.left(90)
-
-t.end_fill()
-
-# Azul
-t.penup()
-t.goto(-300, -150)
-t.setheading(0)
-t.pendown()
-t.color("#0072C6")
-t.begin_fill()
-
-for i in range(2):
-    t.fd(600)
-    t.left(90)
-    t.fd(100)
-    t.left(90)
-
-t.end_fill()
+# 14. Estônia
+bandeira_horizontal("#0072CE", "black", "white")
 sleep(2)
+t.clear()
+
+# 15. Serra Leoa
+bandeira_horizontal("#1EB53A", "white", "#0072C6")
+sleep(2)
+
+# EXTRA - Escolher a bandeira
+
+pais = t.textinput(
+    "Escolher bandeira",
+    "Qual bandeira você quer desenhar?"
+)
+
+if pais == "França":
+    bandeira_vertical("#0055A4", "white", "#EF4135")
+
+if pais == "Itália":
+    bandeira_vertical("#009246", "white", "#CE2B37")
+
+if pais == "Irlanda":
+    bandeira_vertical("#169B62", "white", "#FF883E")
+
+if pais == "Bélgica":
+    bandeira_vertical("black", "#FDDA24", "#EF3340")
+
+if pais == "Alemanha":
+    bandeira_horizontal("black", "#DD0000", "#FFCE00")
+
+if pais == "Países Baixos":
+    bandeira_horizontal("#AE1C28", "white", "#21468B")
+
+if pais == "Áustria":
+    bandeira_horizontal("#ED2939", "white", "#ED2939")
+
+if pais == "Rússia":
+    bandeira_horizontal("white", "#0039A6", "#D52B1E")
+
+if pais == "Hungria":
+    bandeira_horizontal("#CE2939", "white", "#477050")
+
+if pais == "Luxemburgo":
+    bandeira_horizontal("#EF3340", "white", "#00A3E0")
+
+if pais == "Estônia":
+    bandeira_horizontal("#0072CE", "black", "white")
+
+if pais == "Serra Leoa":
+    bandeira_horizontal("#1EB53A", "white", "#0072C6")
+
+
+
+mainloop()
+
+
 
 mainloop()
