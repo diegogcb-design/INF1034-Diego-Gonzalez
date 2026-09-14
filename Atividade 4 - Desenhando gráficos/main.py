@@ -38,14 +38,15 @@ t.color("red")
 
 def raiz(x):
     y= x ** 0.5
-    t.goto(x*3,y*15)
+    return y 
 
 t.color("red")
 t.pu()
 t.goto(0,0)
 t.pd()
 for x in range (0,101):
-    raiz(x)
+    y= raiz(x)
+    t.goto(x*3, y*15)
 
 
 mainloop()
