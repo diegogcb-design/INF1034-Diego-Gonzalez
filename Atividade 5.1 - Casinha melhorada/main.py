@@ -17,10 +17,14 @@ mixer.music.load("Atividade 5 - Famosa Casinha + Recursos/batman_1966.mp3")
 mixer.music.play(-1)
 
 while running:
- 
+    clock.tick(60)
+
     for ev in event.get():
         if ev.type == QUIT:
             running = False
+
+    dt = clock.get_time()/1000
+ 
 
     # Fundo
     #draw.rect(screen, color, (x, y, largura, altura))
