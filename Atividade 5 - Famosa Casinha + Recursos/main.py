@@ -6,14 +6,14 @@ screen = display.set_mode((1280, 720))
 running = True
 
 # Fonte
-fonte = font.Font("batmfa__.ttf", 40)
+fonte = font.Font("Atividade 5 - Famosa Casinha + Recursos/batmfa__.ttf", 40)
 texto = fonte.render("BATMAN HOUSE", True, "black")
 
 # Imagem
-batman = image.load("batman.png")
+batman = image.load("Atividade 5 - Famosa Casinha + Recursos/batman.png")
 batman = transform.scale(batman, (150, 150))
 
-mixer.music.load("batman_1966.mp3")
+mixer.music.load("Atividade 5 - Famosa Casinha + Recursos/batman_1966.mp3")
 mixer.music.play(-1)
 
 while running:
