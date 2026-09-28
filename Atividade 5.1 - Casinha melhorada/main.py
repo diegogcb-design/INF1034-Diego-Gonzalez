@@ -101,11 +101,6 @@ while running:
         background_color = "#87CEEB"
         estagio = "tarde"
 
-    # Verificar se a música inicial do Batman terminou
-    if musica_inicial:
-        if not mixer.music.get_busy():
-            musica_inicial = False
-            estagio_anterior = ""
 
     # Mudar música dependendo do estágio
     if not musica_inicial and estagio != estagio_anterior:
