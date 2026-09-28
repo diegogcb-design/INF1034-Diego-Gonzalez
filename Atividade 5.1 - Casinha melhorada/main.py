@@ -32,6 +32,10 @@ sol_x = 170
 sol_y = 120
 vel_sol = 200
 
+# Estágio do dia
+estagio = "noite"
+estagio = "manha"
+estagio = "tarde"
 
 while running:
     clock.tick(60)
