@@ -15,12 +15,6 @@ texto = fonte.render("BATMAN HOUSE", True, "black")
 batman = image.load("Atividade 5.1 - Casinha melhorada/batman.png")
 batman = transform.scale(batman, (150, 150))
 
-# Música inicial do Batman
-#mixer.music.load("Atividade 5.1 - Casinha melhorada/batman_1966.mp3")
-#mixer.music.play()
-
-musica_inicial = True
-
 # Movimento da nuvem
 nuvem_x = 750
 vel_nuvem = 120
@@ -101,12 +95,13 @@ while running:
         background_color = "#87CEEB"
         estagio = "tarde"
 
+    # Mudar música quando o estágio muda
+    if estagio != estagio_anterior:
 
-    # Mudar música dependendo do estágio
-    if not musica_inicial and estagio != estagio_anterior:
-
+        # Parar música anterior
         mixer.music.stop()
 
+        # Carregar música do estágio atual
         if estagio == "manha":
             mixer.music.load(
                 "Atividade 5.1 - Casinha melhorada/manha.mp3"
@@ -122,9 +117,10 @@ while running:
                 "Atividade 5.1 - Casinha melhorada/noite.mp3"
             )
 
-        # Repetir música do estágio até mudar
+        # Tocar até mudar de estágio
         mixer.music.play(-1)
 
+        # Guardar estágio atual
         estagio_anterior = estagio
 
     # Fundo
@@ -223,5 +219,8 @@ while running:
     screen.blit(batman, (1050, 450))
 
     display.update()
+
+# Parar música ao fechar
+mixer.music.stop()
 
 quit()
