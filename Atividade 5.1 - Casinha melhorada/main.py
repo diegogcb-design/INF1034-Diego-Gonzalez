@@ -7,11 +7,6 @@ running = True
 
 clock = time.Clock()
 
-# Som
-sfx_manha = mixer.Sound("Atividade 5.1 - Casinha melhorada/manha.mp3")
-sfx_tarde = mixer.Sound("Atividade 5.1 - Casinha melhorada/tarde.mp3")
-sfx_noite = mixer.Sound("Atividade 5.1 - Casinha melhorada/noite.mp3")
-
 # Fonte
 fonte = font.Font("Atividade 5.1 - Casinha melhorada/batmfa__.ttf", 40)
 texto = fonte.render("BATMAN HOUSE", True, "black")
@@ -20,8 +15,11 @@ texto = fonte.render("BATMAN HOUSE", True, "black")
 batman = image.load("Atividade 5.1 - Casinha melhorada/batman.png")
 batman = transform.scale(batman, (150, 150))
 
-mixer.music.load("Atividade 5.1 - Casinha melhorada/batman_1966.mp3")
-mixer.music.play(-1)
+# Música inicial do Batman
+#mixer.music.load("Atividade 5.1 - Casinha melhorada/batman_1966.mp3")
+#mixer.music.play()
+
+musica_inicial = True
 
 # Movimento da nuvem
 nuvem_x = 750
@@ -33,9 +31,8 @@ sol_y = 120
 vel_sol = 200
 
 # Estágio do dia
-estagio = "noite"
-estagio = "manha"
 estagio = "tarde"
+estagio_anterior = ""
 
 while running:
     clock.tick(60)
@@ -46,18 +43,10 @@ while running:
 
         if ev.type == MOUSEMOTION:
             sol_x, sol_y = ev.pos
-        
+
         if ev.type == MOUSEBUTTONDOWN:
             if ev.button == 1:
-             sol_x, sol_y = ev.pos
-        if estagio == "manha":
-            sfx_manha.play()
-
-        elif estagio == "tarde":
-            sfx_tarde.play()
-
-        elif estagio == "noite":
-            sfx_noite.play()
+                sol_x, sol_y = ev.pos
 
     dt = clock.get_time() / 1000
 
@@ -76,23 +65,28 @@ while running:
 
     if keys[K_RIGHT]:
         sol_x += vel_sol * dt
+
     if keys[K_LEFT]:
         sol_x -= vel_sol * dt
+
     if keys[K_DOWN]:
         sol_y += vel_sol * dt
+
     if keys[K_UP]:
         sol_y -= vel_sol * dt
 
     # Limites do sol e dos raios
     if sol_x < 115:
         sol_x = 115
+
     if sol_x > 1165:
         sol_x = 1165
+
     if sol_y < 110:
         sol_y = 110
+
     if sol_y > 610:
         sol_y = 610
-
 
     # Estágio do dia
     if sol_y > 450:
@@ -107,17 +101,52 @@ while running:
         background_color = "#87CEEB"
         estagio = "tarde"
 
+    # Verificar se a música inicial do Batman terminou
+    if musica_inicial:
+        if not mixer.music.get_busy():
+            musica_inicial = False
+            estagio_anterior = ""
+
+    # Mudar música dependendo do estágio
+    if not musica_inicial and estagio != estagio_anterior:
+
+        mixer.music.stop()
+
+        if estagio == "manha":
+            mixer.music.load(
+                "Atividade 5.1 - Casinha melhorada/manha.mp3"
+            )
+
+        elif estagio == "tarde":
+            mixer.music.load(
+                "Atividade 5.1 - Casinha melhorada/tarde.mp3"
+            )
+
+        elif estagio == "noite":
+            mixer.music.load(
+                "Atividade 5.1 - Casinha melhorada/noite.mp3"
+            )
+
+        # Repetir música do estágio até mudar
+        mixer.music.play(-1)
+
+        estagio_anterior = estagio
+
     # Fundo
     screen.fill(background_color)
 
-    # grama
+    # Grama
     draw.rect(screen, "green", (0, 600, 1280, 120))
 
     # Casa
     draw.rect(screen, "#646464", (310, 360, 300, 240))
 
     # Telhado
-    draw.polygon(screen, "#FF0000", [(310, 360), (610, 360), (460, 250)])
+    draw.polygon(
+        screen,
+        "#FF0000",
+        [(310, 360), (610, 360), (460, 250)]
+    )
 
     # Janela
     draw.rect(screen, "#172675", (340, 450, 80, 100))
@@ -138,14 +167,53 @@ while running:
     draw.circle(screen, "#FFF251", (sol_x, sol_y), 55)
 
     # Raios do sol
-    draw.line(screen, "#FFF251", (sol_x, sol_y - 70), (sol_x, sol_y - 110), 8)
-    draw.line(screen, "#FFF251", (sol_x, sol_y + 70), (sol_x, sol_y + 110), 8)
-    draw.line(screen, "#FFF251", (sol_x - 70, sol_y), (sol_x - 115, sol_y), 8)
-    draw.line(screen, "#FFF251", (sol_x + 70, sol_y), (sol_x + 115, sol_y), 8)
-    draw.line(screen, "#FFF251", (sol_x - 50, sol_y - 50), (sol_x - 85, sol_y - 85), 8)
-    draw.line(screen, "#FFF251", (sol_x + 50, sol_y - 50), (sol_x + 85, sol_y - 85), 8)
-    draw.line(screen, "#FFF251", (sol_x - 50, sol_y + 50), (sol_x - 85, sol_y + 85), 8)
-    draw.line(screen, "#FFF251", (sol_x + 50, sol_y + 50), (sol_x + 85, sol_y + 85), 8)
+    draw.line(
+        screen, "#FFF251",
+        (sol_x, sol_y - 70),
+        (sol_x, sol_y - 110), 8
+    )
+
+    draw.line(
+        screen, "#FFF251",
+        (sol_x, sol_y + 70),
+        (sol_x, sol_y + 110), 8
+    )
+
+    draw.line(
+        screen, "#FFF251",
+        (sol_x - 70, sol_y),
+        (sol_x - 115, sol_y), 8
+    )
+
+    draw.line(
+        screen, "#FFF251",
+        (sol_x + 70, sol_y),
+        (sol_x + 115, sol_y), 8
+    )
+
+    draw.line(
+        screen, "#FFF251",
+        (sol_x - 50, sol_y - 50),
+        (sol_x - 85, sol_y - 85), 8
+    )
+
+    draw.line(
+        screen, "#FFF251",
+        (sol_x + 50, sol_y - 50),
+        (sol_x + 85, sol_y - 85), 8
+    )
+
+    draw.line(
+        screen, "#FFF251",
+        (sol_x - 50, sol_y + 50),
+        (sol_x - 85, sol_y + 85), 8
+    )
+
+    draw.line(
+        screen, "#FFF251",
+        (sol_x + 50, sol_y + 50),
+        (sol_x + 85, sol_y + 85), 8
+    )
 
     # Nuvem
     draw.circle(screen, "white", (nuvem_x, 100), 55)
