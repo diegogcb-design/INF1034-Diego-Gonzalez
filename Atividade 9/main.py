@@ -5,89 +5,109 @@ from random import randint
 def randomColor():
   return (randint(0, 255), randint(0, 255), randint(0, 255))
 
+# espiral revursiva
 
-def drawSquare(t, size):
-  # t.goto(x, y)
-  t.pd()
-  t.begin_fill()
-  t.fillcolor(randomColor())
-  for i in range(4):
+def recursiveSpiral(t, size, angle):
+  if size < 5:
+    return
+  t.fd(size)
+  t.lt(angle)
+  recursiveSpiral(t, size - 3, angle)
+
+
+# triangulos recursivos
+
+def drawTriangle(t, size):
+  for i in range(3):
     t.fd(size)
-    t.right(90)
-  t.end_fill()
-  t.pu()
+    t.lt(120)
 
 
-def drawSquareFractal(t, size, step=50):
-  if step < 0 or size < 1:
+def triangleFractal(t, size, minSize):
+  if size < minSize:
     return
-  t.pd()
-  t.fd(size / 1.5)
-  t.lt(10)
-  drawSquare(t, size)
-  drawSquareFractal(t, size - 1, step - 1)
 
+  t.pencolor(randomColor())
+  drawTriangle(t, size)
 
-def drawSpiral(t):
-  for i in range(100):
-    t.fd(i)
-    t.lt(15)
-
-
-def drawStarFractal(t, size):
-  if size < 10:
-    return
-  for i in range(5):
+  for i in range(3):
     t.fd(size)
-    drawStarFractal(t, size / 3)
-    t.lt(216)
+    triangleFractal(t, size / 2, minSize)
+    t.lt(120)
 
 
-def treeFractal(t, size, angle, nivel):
-  if size < 40:
+# floco de neve de Koch
+
+def kochFractal(t, size, nivel, angle=60):
+  # Quando chega no nivel 0, desenha uma linha e termina a recursao
+  if nivel == 0:
+    t.fd(size)
     return
-  t.pd()
-  t.fd(size)
 
-  # right tree
-  t.rt(angle)
-  t.fd(size)
-  treeFractal(t, size * 0.8, angle, nivel - 1)
-  t.back(size)
+  # Cada nova linha tem 1/3 do tamanho da linha anterior
+  newSize = size / 3
 
-  turtle.pencolor(0, 255 // nivel, 0)
+  # Primeiro segmento
+  kochFractal(t, newSize, nivel - 1, angle)
 
-  # left tree
-  t.lt(2 * angle)
-  t.fd(size)
-  treeFractal(t, size * 0.8, angle, nivel - 1)
-  t.back(size)
+  # Gira para a esquerda para subir
+  t.lt(angle)
 
-  turtle.pencolor(0, 255 // nivel, 0)
-  t.lt(-angle)
-  t.back(size)
+  # Segundo segmento
+  kochFractal(t, newSize, nivel - 1, angle)
+
+  # Gira para a direita para descer
+  t.rt(angle * 2)
+
+  # Terceiro segmento
+  kochFractal(t, newSize, nivel - 1, angle)
+
+  # Volta para a direcao inicial
+  t.lt(angle)
+
+  # Quarto segmento
+  kochFractal(t, newSize, nivel - 1, angle)
+
+
+# Funcao que junta 3 fractais de Koch para formar o floco de neve
+def drawKochSnowflake(t, size, nivel, angle=60):
+
+  # Repete 3 vezes porque o floco tem a forma inicial de um triangulo
+  for i in range(3):
+
+    # Escolhe uma cor aleatoria para cada lado
+    t.pencolor(randomColor())
+
+    # Desenha um lado do floco
+    kochFractal(t, size, nivel, angle)
+
+    # Gira 120 graus para desenhar o proximo lado
+    t.rt(120)
 
 
 t = turtle.Turtle()
 turtle.colormode(255)
-# t.speed("slowest")
+
 t.speed(0)
 t.pu()
 
-## Desenhando o "chifre"
-# t.goto(-100, -200)
-# t.pd()
-# drawSquareFractal(t, 70, 60)
 
-## Desenhando a estrela
-# t.goto(-100, 0)
-# t.pd()
-# drawStarFractal(t, 200)
+## Desenhando a espiral recursiva
+#t.goto(0, 0)
+#t.pd()
+#recursiveSpiral(t, 150, 30)
 
-## Desenhando a árvore
-# t.goto(0, -200)
-# t.lt(90)
-# treeFractal(t, 80, 40, 20)
 
-## Desenhando uma espiral
-# drawSpiral(t)
+## Desenhando os triangulos
+#t.goto(-200, -150)
+#t.pd()
+#triangleFractal(t, 300, 20)
+
+
+## Desenhando o floco de neve de Koch
+t.goto(-250, 150)
+t.pd()
+drawKochSnowflake(t, 500, 4)
+
+
+turtle.done()
