@@ -93,9 +93,9 @@ t.pu()
 
 
 ## Desenhando a espiral recursiva
-#t.goto(0, 0)
-#t.pd()
-#recursiveSpiral(t, 150, 30)
+t.goto(0, -150)
+t.pd()
+recursiveSpiral(t, 150, 30)
 
 
 ## Desenhando os triangulos
@@ -105,9 +105,9 @@ t.pu()
 
 
 ## Desenhando o floco de neve de Koch
-t.goto(-250, 150)
-t.pd()
-drawKochSnowflake(t, 500, 4)
+#t.goto(-250, 150)
+#t.pd()
+#drawKochSnowflake(t, 500, 4)
 
 
 turtle.done()
