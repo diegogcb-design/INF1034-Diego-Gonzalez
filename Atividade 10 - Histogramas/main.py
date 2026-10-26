@@ -106,9 +106,9 @@ def criar_cores(num_cat):
 
     for i in range(num_cat):
         cor = (
-            randint(50, 220),
-            randint(50, 220),
-            randint(50, 220)
+            randint(50, 230),
+            randint(50, 230),
+            randint(50, 230)
         )
         cores.append(cor)
 
@@ -215,7 +215,7 @@ def draw(screen, lista_total, num_min, num_max, cores, titulo, pos_y):
         screen.blit(texto, (45, y - 8))
 
 
-# LOOP PRINCIPAL DO PYGAME
+# LOOP PRINCIPAL DO PYGAME 
 
 while True:
 
