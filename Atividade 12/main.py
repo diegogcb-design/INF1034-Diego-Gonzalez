@@ -110,7 +110,7 @@ with open(os.path.join(pasta, "mapa.txt"), "r") as arquivo:
     mapa = [linha.strip() for linha in arquivo]
 
 
-# antes cada letra era verificada com vários ifs
+# antes fazíamos um if para cada letra
 # if mapa[i][j] == "G":
 #     screen.blit(
 #         tileset,
@@ -118,17 +118,15 @@ with open(os.path.join(pasta, "mapa.txt"), "r") as arquivo:
 #         (0, 0, tile_size, tile_size)
 #     )
 
-# agora usamos um dicionário
+# agora os cortes ficam no dicionário
 tiles = {
     "G": (0, 0, 64, 64),
     "T": (64, 0, 64, 64),
     "P": (128, 0, 64, 64)
 }
 
-
-# quais blocos têm colisão
+# blocos que têm colisão
 blocos_solidos = ["G", "T", "P"]
-
 
 # camera
 camera_x = 0
@@ -250,16 +248,16 @@ while True:
                     )
 
 
-    # não deixa sair do começo do mapa
+    # tamanho do mapa
+    largura_mapa = len(mapa[0]) * tile_size
+
+
+    # não sair do começo
     if pos_x < 0:
         pos_x = 0
 
 
-    # tamanho total do mapa
-    largura_mapa = len(mapa[0]) * tile_size
-
-
-    # não deixa sair do final
+    # não sair do final
     if pos_x + largura_jogador > largura_mapa:
         pos_x = largura_mapa - largura_jogador
 
@@ -268,14 +266,19 @@ while True:
     camera_x = pos_x - 450
 
 
-    # não deixa a camera passar do começo
+    # limite esquerdo da camera
     if camera_x < 0:
         camera_x = 0
 
 
-    # não deixa a camera passar do final
+    # limite direito da camera
     if camera_x > largura_mapa - 900:
         camera_x = largura_mapa - 900
+
+
+    # caso o mapa seja menor que a tela
+    if camera_x < 0:
+        camera_x = 0
 
 
     # fundo
@@ -292,19 +295,15 @@ while True:
 
                 screen.blit(
                     tileset,
-
-                    # tiramos camera_x para fazer a camera
                     (
                         j * tile_size - camera_x,
                         i * tile_size
                     ),
-
-                    # corte vem do dicionário
                     tiles[letra]
                 )
 
 
-    # animação
+    # animação do personagem
     if andando:
 
         # correndo
@@ -327,6 +326,7 @@ while True:
     )
 
 
+    # pele
     personagem.blit(
         skin,
         (0, 0),
@@ -339,6 +339,7 @@ while True:
     )
 
 
+    # calça
     personagem.blit(
         pants,
         (0, 0),
@@ -351,6 +352,7 @@ while True:
     )
 
 
+    # camisa
     personagem.blit(
         shirt,
         (0, 0),
@@ -363,6 +365,7 @@ while True:
     )
 
 
+    # sapatos
     personagem.blit(
         shoes,
         (0, 0),
@@ -375,6 +378,7 @@ while True:
     )
 
 
+    # cabelo
     personagem.blit(
         hair,
         (0, 0),
@@ -387,8 +391,17 @@ while True:
     )
 
 
-    # virar para esquerda
-    if not direita:
+    # antes estava assim:
+    # if not direita:
+    #     personagem = pygame.transform.flip(
+    #         personagem,
+    #         True,
+    #         False
+    #     )
+
+    # o sprite original olha para esquerda
+    # então viramos quando anda para direita
+    if direita:
         personagem = pygame.transform.flip(
             personagem,
             True,
@@ -396,13 +409,13 @@ while True:
         )
 
 
-    # antes era só pos_x
+    # antes da camera estava assim:
     # screen.blit(
     #     personagem,
     #     (int(pos_x - 12), int(pos_y - 9))
     # )
 
-    # agora descontamos a posição da camera
+    # desenhar considerando a camera
     screen.blit(
         personagem,
         (
